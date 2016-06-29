@@ -26,8 +26,8 @@ function configureMiddlewareManager() {
 function configureNamespace(reducer, namespace) {
   return (state, action) => {
     if (action.__ns__ == namespace || typeof state === 'undefined') {
-      const { __ns__, ...actionNew } = action;
-      return reducer(state, actionNew);
+      //const { __ns__, ...actionNew } = action;
+      return reducer(state, action);
     }
     return state;
   };

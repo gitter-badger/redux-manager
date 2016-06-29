@@ -1,3 +1,4 @@
+* [REMOVE] Cleaning __ns__ from action, need to pouch middleware
 * [ADD] [INITIAL] .add(name, initialState)
 * [ADD] .dispatch extend store dispatch with namespace
 * [ADD] [SAGA] [MIDDLEWARE] [REDUCER] .has(name)
