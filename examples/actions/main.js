@@ -6,7 +6,8 @@ const types = {
 };
 
 const actions = {
-  increment: (__ns__) => { return { __ns__, type: types.INCREMENT }; }
+  increment:        ()        => { return { type: types.INCREMENT }; },
+  incrementWithNS:  (__ns__)  => { return { __ns__, type: types.INCREMENT }; }
 };
 
 const reducer = (state, action) => {
@@ -24,6 +25,10 @@ manager.enableLogger(createLogger());
 
 const store = manager.getStore();
 
-store.dispatch(actions.increment('counter1'));
-store.dispatch(actions.increment('counter2'));
-store.dispatch(actions.increment('counter2'));
+store.dispatch(actions.incrementWithNS('counter1'));
+store.dispatch(actions.incrementWithNS('counter2'));
+store.dispatch(actions.incrementWithNS('counter2'));
+
+manager.dispatch(actions.increment(), 'counter1');
+manager.dispatch(actions.increment(), 'counter2');
+manager.dispatch(actions.incrementWithNS('counter2'));

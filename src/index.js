@@ -51,6 +51,7 @@ function configureManager() {
   var manager = {};
   var store = null;
 
+  manager.dispatch = (action, __ns__) => { store.dispatch({ __ns__, ...action }); };
   manager.reducer = configureReducerManager();
   manager.middleware = configureMiddlewareManager();
   manager.saga = configureSagaManager();

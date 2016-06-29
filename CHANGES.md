@@ -1,3 +1,4 @@
+* [ADD] .dispatch extend store dispatch with namespace
 * [ADD] [SAGA] [MIDDLEWARE] [REDUCER] .has(name)
 
 ## 0.0.1
