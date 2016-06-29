@@ -1,5 +1,15 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 
+function configureInitialManager() {
+  var initial = {};
+  var initialHash = {};
+
+  initial.add = (name, initialState) => initialHash[name] = initialState;
+  initial.hash = () => initialHash;
+
+  return initial;
+}
+
 function configureMiddlewareManager() {
   var middleware = {};
   var middlewareHash = {};
@@ -52,6 +62,8 @@ function configureManager() {
   var store = null;
 
   manager.dispatch = (action, __ns__) => { store.dispatch({ __ns__, ...action }); };
+
+  manager.initial = configureInitialManager();
   manager.reducer = configureReducerManager();
   manager.middleware = configureMiddlewareManager();
   manager.saga = configureSagaManager();
@@ -71,7 +83,7 @@ function configureManager() {
 
     const createStoreWithMiddleware = applyMiddleware(...middlewareList)(createStore);
     const rootReducer = combineReducers(manager.reducer.hash());
-    store = createStoreWithMiddleware(rootReducer);
+    store = createStoreWithMiddleware(rootReducer, manager.initial.hash());
 
     const sagaMiddleware = manager.middleware.getSaga();
     if (sagaMiddleware) {
