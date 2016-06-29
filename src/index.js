@@ -5,6 +5,7 @@ function configureMiddlewareManager() {
   var middlewareHash = {};
 
   middleware.add = (name, middlewareInstance) => { middlewareHash[name] = middlewareInstance; };
+  middleware.has = (name) => middlewareHash.hasOwnProperty(name);
   middleware.list = () => Object.keys(middlewareHash).map(k => middlewareHash[k]);
   middleware.getLogger = () => middlewareHash['logger'];
   middleware.getSaga = () => middlewareHash['saga'];
@@ -29,6 +30,7 @@ function configureReducerManager() {
   reducer.add = (name, reducer, withNamespace) => {
     reducerHash[name] = withNamespace ? configureNamespace(reducer, name) : reducer;
   };
+  reducer.has = (name) => reducerHash.hasOwnProperty(name);
   reducer.hash = () => reducerHash;
 
   return reducer;
@@ -39,6 +41,7 @@ function configureSagaManager() {
   var sagaHash = {};
 
   saga.add = (name, sagaRoot) => { sagaHash[name] = sagaRoot; };
+  saga.has = (name) => sagaHash.hasOwnProperty(name);
   saga.list = () => Object.keys(sagaHash).map(k => sagaHash[k]);
 
   return saga;

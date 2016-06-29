@@ -17,6 +17,9 @@ const reducer = (state, action) => {
 
 manager.reducer.add('counter1', reducer, true);
 manager.reducer.add('counter2', reducer, true);
+
+console.log(`manager.reducer.has('counter1') = ${manager.reducer.has('counter1')}`);
+
 manager.enableLogger(createLogger());
 
 const store = manager.getStore();

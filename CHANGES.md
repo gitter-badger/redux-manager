@@ -1,3 +1,5 @@
+* [ADD] [SAGA] [MIDDLEWARE] [REDUCER] .has(name)
+
 ## 0.0.1
 
 * [COMPILE] 0.0.1
