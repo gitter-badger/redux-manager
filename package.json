@@ -1,6 +1,6 @@
 {
   "name": "redux-manager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "descripasdasdasdtion": "Redux store manager",
   "main": "lib/index.js",
   "scripts": {

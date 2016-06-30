@@ -1,3 +1,6 @@
+## 0.0.2
+
+* [COMPILE] [PUBLISH] 0.0.2
 * [REFACTOR] add to set
 * [ADD] [API] add(name, apiInstance), get(name)
 * [REMOVE] Cleaning __ns__ from action, need to pouch middleware
