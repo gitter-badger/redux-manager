@@ -16,10 +16,10 @@ const reducer = (state, action) => {
   return state;
 };
 
-manager.reducer.add('counter1', reducer, true);
-manager.reducer.add('counter2', reducer, true);
+manager.reducer.set('counter1', reducer, true);
+manager.reducer.set('counter2', reducer, true);
 
-manager.initial.add('counter1', 55);
+manager.initial.set('counter1', 55);
 
 console.log(`manager.reducer.has('counter1') = ${manager.reducer.has('counter1')}`);
 

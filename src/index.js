@@ -1,10 +1,20 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 
+function configureAPIManager() {
+  var api = {};
+  var apiHash = {};
+
+  api.set = (name, apiInstance) => apiHash[name] = apiInstance;
+  api.get = (name) => apiHash[name];
+
+  return api;
+}
+
 function configureInitialManager() {
   var initial = {};
   var initialHash = {};
 
-  initial.add = (name, initialState) => initialHash[name] = initialState;
+  initial.set = (name, initialState) => initialHash[name] = initialState;
   initial.hash = () => initialHash;
 
   return initial;
@@ -14,7 +24,7 @@ function configureMiddlewareManager() {
   var middleware = {};
   var middlewareHash = {};
 
-  middleware.add = (name, middlewareInstance) => { middlewareHash[name] = middlewareInstance; };
+  middleware.set = (name, middlewareInstance) => { middlewareHash[name] = middlewareInstance; };
   middleware.has = (name) => middlewareHash.hasOwnProperty(name);
   middleware.list = () => Object.keys(middlewareHash).map(k => middlewareHash[k]);
   middleware.getLogger = () => middlewareHash['logger'];
@@ -37,7 +47,7 @@ function configureReducerManager() {
   var reducer = {};
   var reducerHash = {};
 
-  reducer.add = (name, reducer, withNamespace) => {
+  reducer.set = (name, reducer, withNamespace) => {
     reducerHash[name] = withNamespace ? configureNamespace(reducer, name) : reducer;
   };
   reducer.has = (name) => reducerHash.hasOwnProperty(name);
@@ -50,7 +60,7 @@ function configureSagaManager() {
   var saga = {};
   var sagaHash = {};
 
-  saga.add = (name, sagaRoot) => { sagaHash[name] = sagaRoot; };
+  saga.set = (name, sagaRoot) => { sagaHash[name] = sagaRoot; };
   saga.has = (name) => sagaHash.hasOwnProperty(name);
   saga.list = () => Object.keys(sagaHash).map(k => sagaHash[k]);
 
@@ -63,17 +73,18 @@ function configureManager() {
 
   manager.dispatch = (action, __ns__) => { store.dispatch({ __ns__, ...action }); };
 
+  manager.api = configureAPIManager();
   manager.initial = configureInitialManager();
   manager.reducer = configureReducerManager();
   manager.middleware = configureMiddlewareManager();
   manager.saga = configureSagaManager();
 
   manager.enableLogger = (loggerMiddleware) => {
-    manager.middleware.add('logger', loggerMiddleware);
+    manager.middleware.set('logger', loggerMiddleware);
   };
 
   manager.enableSaga = (sagaMiddleware) => {
-    manager.middleware.add('saga', sagaMiddleware);
+    manager.middleware.set('saga', sagaMiddleware);
   };
 
   manager.getStore = () => {

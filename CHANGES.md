@@ -1,3 +1,5 @@
+* [REFACTOR] add to set
+* [ADD] [API] add(name, apiInstance), get(name)
 * [REMOVE] Cleaning __ns__ from action, need to pouch middleware
 * [ADD] [INITIAL] .add(name, initialState)
 * [ADD] .dispatch extend store dispatch with namespace
