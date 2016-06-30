@@ -1,3 +1,5 @@
+* [ADD] manager as default export
+
 ## 0.0.2
 
 * [COMPILE] [PUBLISH] 0.0.2

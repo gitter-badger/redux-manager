@@ -110,3 +110,4 @@ function configureManager() {
 }
 
 export const manager = configureManager();
+export default manager;
