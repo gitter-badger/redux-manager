@@ -1,3 +1,8 @@
+* [ADD] [DEP] And add debug messages
+
+npm i -S redux-journal
+
+* [REFACTOR] Enable withNamespace by default
 * [ADD] manager as default export
 
 ## 0.0.2

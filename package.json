@@ -1,7 +1,7 @@
 {
   "name": "redux-manager",
   "version": "0.0.2",
-  "descripasdasdasdtion": "Redux store manager",
+  "description": "Redux store manager",
   "main": "lib/index.js",
   "scripts": {
     "compile": "rimraf lib && babel -d lib/ src/",
@@ -41,6 +41,7 @@
     "webpack-node-externals": "^1.2.0"
   },
   "dependencies": {
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "redux-journal": "0.0.1"
   }
 }
